@@ -29,6 +29,7 @@ In following the tangent of the spline I struggled to get the end tangent of one
 ![image](https://github.com/user-attachments/assets/fa339d2f-7ea4-48c5-ada6-c0a82ec6d8b0)
 
 The first node in the spline is not oriented to be flat, this could be easily fixed by removing lateral randomness from the first couple of nodes in the spline.
+
 ![image](https://github.com/user-attachments/assets/c0d7a76f-7032-45ff-95c3-5e8a1cdfb162)
 
 
