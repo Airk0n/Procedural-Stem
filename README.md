@@ -1,5 +1,7 @@
 # Procedural Stem
-To produce a procedural mesh of a stem I decided to generate it in 3 parts - a spline that generates the path of the stem, a mesh that takes a spline and follows it and then a scriptable config which allow for presets to be easily stored and modified.
+To produce a procedural mesh of a stem I decided to generate it in 3 parts - a spline that generates the path of the stem, a mesh that takes a spline and follows it and then a scriptable config which allow for presets to be easily stored and modified. The thickness tapers towards the top of the mesh whilst following the base thickness and top thickness given in the `SplinePreset`.
+
+![image](https://github.com/user-attachments/assets/ea3d28d8-03cd-4a74-9f87-50bfa570345c)
 
 ## StemPreset
 
@@ -20,4 +22,21 @@ Roughness controls 2 main parameters both of which are on the `StemSpline`:
 A circle is used as the basis of the mesh, if I was to extend this I could look into dividing the base into multiple circles, creating texture along the length of the stem which could scale with roughness.
 This could also be done with a displacement texture and/or a normal map.
 ![image](https://github.com/user-attachments/assets/0373c091-5a7c-418c-9b0e-c628c57c6774)
+
+## Limitations
+Joint orientation:
+In following the tangent of the spline I struggled to get the end tangent of one segment to line up with the tangent of the next segment. the result is quite extreme twisting at the intersection between segments:
+
+![image](https://github.com/user-attachments/assets/8de50b94-cc72-477a-8d9b-db73a6eb0ef3)
+
+Similarly by following the spline I essentially have 2 circles, one starting at one spline and ending at another, the result is some clipping between the 2 segments:
+
+![image](https://github.com/user-attachments/assets/ee625708-a76a-4015-8354-3cda3d327b04)
+
+The first node in the spline is not oriented to be flat, this could be easily fixed by removing lateral randomness from the first couple of nodes in the spline.
+
+![image](https://github.com/user-attachments/assets/c0d7a76f-7032-45ff-95c3-5e8a1cdfb162)
+
+
+
 
