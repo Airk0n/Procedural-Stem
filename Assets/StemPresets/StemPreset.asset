@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b471a2b7733135418c7da880facd863, type: 3}
   m_Name: StemPreset
   m_EditorClassIdentifier: 
-  baseThickness: 0.123
-  topThickness: 0.059
-  age: 157.3
+  baseThickness: 0.165
+  topThickness: 0
+  age: 200
   maxAge: 200
   growthCurve:
     serializedVersion: 2
@@ -49,4 +49,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  roughness: 0.356
+  roughness: 0.631
