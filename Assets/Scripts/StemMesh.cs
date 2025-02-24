@@ -97,10 +97,10 @@ public class StemMesh : MonoBehaviour
         for (int l = 0; l <= lengthSegments; l++)
         {
             Vector3 center = stemSpline.EvaluateStemSpline(l * segmentSize).position;
-            Vector3 forward = (stemSpline.EvaluateStemSpline((l + 1) * segmentSize).position - center).normalized; // Approximate tangent
-            Vector3 up = Vector3.up; // Use a better method if your spline is more complex
+            Vector3 forward = (stemSpline.EvaluateStemSpline((l + 1) * segmentSize).rotation.eulerAngles + center).normalized; // Approximate tangent
+            Vector3 up = Vector3.up;
             Vector3 right = Vector3.Cross(forward, up).normalized;
-            up = Vector3.Cross(right, forward).normalized;  // Ensure up is corrected
+            up = Vector3.Cross(right, forward).normalized;
 
             for (int r = 0; r < radialSegments; r++)
             {
@@ -118,28 +118,24 @@ public class StemMesh : MonoBehaviour
             {
                 int current = l * radialSegments + r;
                 int next = current + radialSegments;
-                int nextR = (r + 1) % radialSegments; // Wrap around the ring
+                int nextR = (r + 1) % radialSegments;
 
                 int currentNext = l * radialSegments + nextR;
                 int nextNext = currentNext + radialSegments;
 
-                // First triangle
                 triangles.Add(current);
                 triangles.Add(next);
                 triangles.Add(nextNext);
 
-                // Second triangle
                 triangles.Add(current);
                 triangles.Add(nextNext);
                 triangles.Add(currentNext);
             }
         }
-
         mesh.SetVertices(vertices);
         mesh.SetTriangles(triangles, 0);
         mesh.SetNormals(normals);
         mesh.RecalculateBounds();
-
     }
 
 
@@ -208,7 +204,6 @@ public class StemMesh : MonoBehaviour
         {
             float angle = i * Mathf.PI * 2 / radialSegments; 
             Vector3 position = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * thicknessBot;
-            //position = splineEvaluatedPoint.LocalToWorld(position);
             Gizmos.DrawSphere(transform.position + position, 0.05f);
         }
     }
