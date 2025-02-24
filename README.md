@@ -1,6 +1,8 @@
 # Procedural Stem
 To produce a procedural mesh of a stem I decided to generate it in 3 parts - a **spline** that generates the path of the stem, a **mesh** that takes a spline and follows it and then a **scriptable config** which allow for presets to be easily stored and modified. The thickness tapers towards the top of the mesh whilst following the base thickness and top thickness given in the `SplinePreset`.
 
+`Thickness` and `age` are related, age and `growthRate` are related with an assumed maximum age of 200.
+
 ![image](https://github.com/user-attachments/assets/1da47da8-a54b-4825-a2a6-99886c024ea3)
 
 ## StemPreset
@@ -25,7 +27,8 @@ This could also be done with a displacement texture and/or a normal map.
 
 ## Limitations
 Joint orientation:
-In following the tangent of the spline I struggled to get the end tangent of one segment to line up with the tangent of the next segment. the result is quite extreme twisting at the intersection between segments some of the time:
+In following the tangent of the spline there's occasional extreme twisting at the intersection between segments, I think this would need a bit of a rework as to how I evaluate the spline, one fix that improved this flipped the orientation of the top node so there's a bit of room for tweaking here.
+
 ![image](https://github.com/user-attachments/assets/fa339d2f-7ea4-48c5-ada6-c0a82ec6d8b0)
 
 The first node in the spline is not oriented to be flat, this could be easily fixed by removing lateral randomness from the first couple of nodes in the spline.
