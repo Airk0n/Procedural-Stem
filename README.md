@@ -1,7 +1,7 @@
 # Procedural Stem
 To produce a procedural mesh of a stem I decided to generate it in 3 parts - a **spline** that generates the path of the stem, a **mesh** that takes a spline and follows it and then a **scriptable config** which allow for presets to be easily stored and modified. The thickness tapers towards the top of the mesh whilst following the base thickness and top thickness given in the `SplinePreset`.
 
-`Thickness` and `age` are related, age and `growthRate` are related with an assumed maximum age of 200.
+`Thickness` and `age` are related, `age` and `growthRate` are also related with an assumed maximum age of 200.
 
 ![image](https://github.com/user-attachments/assets/1da47da8-a54b-4825-a2a6-99886c024ea3)
 
