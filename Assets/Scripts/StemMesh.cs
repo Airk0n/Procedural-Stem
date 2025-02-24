@@ -12,9 +12,10 @@ using static UnityEngine.Rendering.HableCurve;
 [RequireComponent(typeof(StemSpline))]
 public class StemMesh : MonoBehaviour
 {
+    [SerializeField] StemPreset stemPreset;
+
     [UnityEngine.Range(0, 32)]
     [SerializeField] int radialSegments = 3;
-
     [SerializeField] int lengthSegments;
 
     [SerializeField] float lengthMin;
@@ -24,12 +25,12 @@ public class StemMesh : MonoBehaviour
     [SerializeField] float thicknessMax;
 
     [SerializeField] Material material;
-    [SerializeField] StemPreset stemPreset;
 
     [UnityEngine.Range(0f, 1f)]
     public float splineT;
 
     [Header("Gizmos")]
+    [SerializeField] bool hideMesh;
     [SerializeField] bool showGizmoRings;
     [SerializeField] bool showGizmoT;
     [SerializeField] bool showGizmoVerticalSegments;
@@ -79,41 +80,12 @@ public class StemMesh : MonoBehaviour
         return meshRenderer && stemPreset && stemSpline;
     }
 
-
-    private void GenerateMeshLeg()
-    {
-        mesh = new Mesh();
-        mesh.name = "ProceduralStem";
-        mesh.Clear();
-
-        List<Vector3> vertices = new List<Vector3>();
-        float segmentSize = 1f / lengthSegments;
-        for (int l = 0; l < lengthSegments; l++)
-        {
-            for (int r = 0; r < radialSegments; r++)
-            {
-                float angle = r * Mathf.PI * 2 / radialSegments;
-                Vector3 position = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * GetThickness(segmentSize * l);
-                vertices.Add(position);
-            }
-        }
-
-        int[] triangles = new int[vertices.Count/3];
-        for (int i = 0; i < vertices.Count; i++)
-        {
-
-        }
-
-        //mesh.SetVertices(vertices);
-        //mesh.triangles = triangles;
-        //mesh.RecalculateNormals();
-    }
-
     private void GenerateMesh()
     {
         mesh = new Mesh();
         mesh.name = "ProceduralStem";
         mesh.Clear();
+        if (hideMesh) return;
 
         List<Vector3> vertices = new List<Vector3>();
         List<int> triangles = new List<int>();

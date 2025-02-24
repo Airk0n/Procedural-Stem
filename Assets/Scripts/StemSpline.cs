@@ -85,7 +85,6 @@ public class StemSpline : MonoBehaviour
                 nodeCounter = 0;
             }
         }
-
     }
 
     private void OnDrawGizmos()
@@ -119,35 +118,6 @@ public class StemSpline : MonoBehaviour
         Gizmos.DrawSphere(nodePositions[nodePositions.Count -1].position, gizmoSize);
     }
 
-    private void DancingSpline()
-    {
-        var height = stemPreset.GetSize(maxSize);
-        var segmentSize = height / splines;
-        List<Vector3> nodePositions = new List<Vector3>();
-        Gizmos.color = Color.white;
-        for (int i = 0; i < splines; i++)
-        {
-            Vector3 nodePosition = new Vector3(LateralSpread(), segmentSize * i, LateralSpread());
-
-            nodePositions.Add(nodePosition);
-            Gizmos.DrawSphere(nodePosition, gizmoSize);
-        }
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(new Vector3(LateralSpread(), height, LateralSpread()), gizmoSize);
-
-
-        for (int i = 0; i < nodePositions.Count - 1; i++)
-        {
-            Vector3 tangentStart = new Vector3(nodePositions[i].x, nodePositions[i].y + segmentSize / 2, nodePositions[i].z);
-            Vector3 tangentEnd = new Vector3(nodePositions[i + 1].x, nodePositions[i + 1].y - segmentSize / 2, nodePositions[i + 1].z);
-            Handles.DrawBezier(nodePositions[i], nodePositions[i + 1], tangentStart, tangentEnd, Color.white, Texture2D.whiteTexture, 1f);
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(tangentStart, gizmoSize / 2);
-            Gizmos.DrawSphere(tangentEnd, gizmoSize / 2);
-        }
-    }
-
     private float LateralSpread()
     {
         return Random.Range(-roughnessLateral, roughnessLateral);
@@ -164,7 +134,6 @@ public class StemSpline : MonoBehaviour
         OrientedPoint p2 = nodePositions[startingIndex + 2];
         OrientedPoint p3 = nodePositions[startingIndex + 3];
 
-
         Vector3 a = Vector3.Lerp(p0.position, p1.position, localT);
         Vector3 b = Vector3.Lerp(p1.position, p2.position, localT);
         Vector3 c = Vector3.Lerp(p2.position, p3.position, localT);
@@ -175,12 +144,8 @@ public class StemSpline : MonoBehaviour
         return Vector3.Lerp(d, e, localT);
     }
 
-
-
-
     private Vector3 GetBezierPoint(float t)
     {
         return Vector3.up;
     }
-
 }
