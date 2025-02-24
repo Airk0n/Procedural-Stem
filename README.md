@@ -1,5 +1,5 @@
 # Procedural Stem
-To produce a procedural mesh of a stem I decided to generate it in 3 parts - a spline that generates the path of the stem, a mesh that takes a spline and follows it and then a scriptable config which allow for presets to be easily stored and modified. The thickness tapers towards the top of the mesh whilst following the base thickness and top thickness given in the `SplinePreset`.
+To produce a procedural mesh of a stem I decided to generate it in 3 parts - a **spline** that generates the path of the stem, a **mesh** that takes a spline and follows it and then a **scriptable config** which allow for presets to be easily stored and modified. The thickness tapers towards the top of the mesh whilst following the base thickness and top thickness given in the `SplinePreset`.
 
 ![image](https://github.com/user-attachments/assets/ea3d28d8-03cd-4a74-9f87-50bfa570345c)
 
