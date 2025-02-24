@@ -57,8 +57,12 @@ public class StemMesh : MonoBehaviour
 
     private float GetThickness(float t)
     {
-        thicknessBot = Mathf.Lerp(thicknessMin, thicknessMax, stemPreset.baseThickness);
-        thicknessTop = Mathf.Lerp(thicknessMin, thicknessMax, stemPreset.topThickness);
+        float ageLerp = Mathf.InverseLerp(0, stemPreset.maxAge, stemPreset.age);
+        float thicknessMaxPerAge = Mathf.Lerp(0, thicknessMax, ageLerp);
+        float thicknessMinPerAge = Mathf.Lerp(0, thicknessMin, ageLerp);
+
+        thicknessBot = Mathf.Lerp(thicknessMin, thicknessMaxPerAge, stemPreset.baseThickness);
+        thicknessTop = Mathf.Lerp(thicknessMin, thicknessMinPerAge, stemPreset.topThickness);
         return Mathf.Lerp(thicknessBot, thicknessTop, t);
     }
 
