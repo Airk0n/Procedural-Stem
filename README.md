@@ -35,6 +35,9 @@ The first node in the spline is not oriented to be flat, this could be easily fi
 
 ![image](https://github.com/user-attachments/assets/c0d7a76f-7032-45ff-95c3-5e8a1cdfb162)
 
+## Performance
+The mesh and spline are updated OnValidate so when a setting is changed meaning which means that the mesh is generated only when needed.
+
 
 
 
